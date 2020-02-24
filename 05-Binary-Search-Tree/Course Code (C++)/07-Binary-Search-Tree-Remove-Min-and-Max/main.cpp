@@ -239,13 +239,16 @@ private:
     Node* removeMin(Node* node){
 
         if( node->left == NULL ){
-
+            //当左节点为空时，当前节点即为最小节点，删除就行
+            //那么怎么删除呢？需看看当前节点存不存在右节点
+            //存在的话，就需要代替现在的节点；不存在的话依然可以如下返回，因为此时返回是空
             Node* rightNode = node->right;
+            //释放空间
             delete node;
             count --;
             return rightNode;
         }
-
+        //若当前节点存在左节点，则继续递归当前节点的左孩子
         node->left = removeMin(node->left);
         return node;
     }
